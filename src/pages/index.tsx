@@ -22,6 +22,33 @@ export default function Home() {
 
           <img src="/images/banner-conteudos.png" alt="Conteúdos" />
         </div>
+
+        <hr className={styles.divisor} />
+
+        <div className={styles.sectionContent}>
+          <section>
+            <h2>Aprenda a criar aplicativos para Android e IOS</h2>
+            <span>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
+              harum veniam architecto itaque officiis.
+            </span>
+          </section>
+          <img src="/images/financasApp.png" alt="Conteúdos mobile" />
+        </div>
+
+        <hr className={styles.divisor} />
+
+        <div className={styles.sectionContent}>
+          <img src="/images/webDev.png" alt="Conteúdos mobile" />
+
+          <section>
+            <h2>Aprenda a criar sistemas web</h2>
+            <span>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
+              harum veniam architecto itaque officiis.
+            </span>
+          </section>
+        </div>
       </main>
     </>
   )
