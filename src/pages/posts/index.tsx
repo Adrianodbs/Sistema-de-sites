@@ -3,8 +3,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import thumbImg from '../../../public/images/thumb.png'
-
 import {
   FiChevronsLeft,
   FiChevronLeft,
@@ -16,6 +14,8 @@ import { GetStaticProps } from 'next'
 import { getPrismicClient } from '../../services/prismic'
 import Prismic from '@prismicio/client'
 import { RichText } from 'prismic-dom'
+
+import { useState } from 'react'
 
 type Post = {
   slug: string
@@ -29,8 +29,8 @@ interface PostsProps {
   posts: Post[]
 }
 
-function Posts({ posts }: PostsProps) {
-  console.log(posts)
+function Posts({ posts: postsBlog }: PostsProps) {
+  const [posts, setPosts] = useState(postsBlog || [])
   return (
     <>
       <Head>
@@ -38,18 +38,22 @@ function Posts({ posts }: PostsProps) {
       </Head>
       <main className={styles.container}>
         <div className={styles.posts}>
-          <Link href="/">
-            <Image
-              src={thumbImg}
-              alt="post titulo 1"
-              width={720}
-              height={410}
-              quality={100}
-            />
-            <strong>Criando o meu primeiro aplicativo</strong>
-            <time>26/04/2023</time>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </Link>
+          {posts.map(post => (
+            <Link key={post.slug} href={`/posts/${post.slug}`}>
+              <Image
+                src={post.cover}
+                alt={post.title}
+                width={720}
+                height={410}
+                quality={100}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsqq+qBwAE4gH0FC/z7wAAAABJRU5ErkJggg=="
+              />
+              <strong>{post.title}</strong>
+              <time>{post.updatedAt}</time>
+              <p>{post.description}</p>
+            </Link>
+          ))}
 
           <div className={styles.buttonNavigate}>
             <div>
