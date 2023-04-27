@@ -20,5 +20,8 @@
     "react-icons": "^4.8.0",
     "sass": "^1.62.0",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/prismic-dom": "^2.1.1"
   }
 }
