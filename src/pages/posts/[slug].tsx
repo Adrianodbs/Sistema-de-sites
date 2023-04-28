@@ -4,6 +4,9 @@ import styles from './post.module.scss'
 import { getPrismicClient } from '../../services/prismic'
 import { RichText } from 'prismic-dom'
 
+import Head from 'next/head'
+import Image from 'next/image'
+
 interface PostProps {
   post: {
     slug: string
@@ -16,7 +19,32 @@ interface PostProps {
 
 function Post({ post }: PostProps) {
   console.log(post)
-  return <h1>Detalhe do post</h1>
+  return (
+    <>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
+      <main className={styles.container}>
+        <article className={styles.post}>
+          <Image
+            src={post.cover}
+            quality={100}
+            width={720}
+            height={410}
+            alt={post.title}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsqq+qBwAE4gH0FC/z7wAAAABJRU5ErkJggg=="
+          />
+          <h1>{post.title}</h1>
+          <time>{post.updatedAt}</time>
+          <div
+            className={styles.postContent}
+            dangerouslySetInnerHTML={{ __html: post.description }}
+          ></div>
+        </article>
+      </main>
+    </>
+  )
 }
 
 export default Post
